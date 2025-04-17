@@ -84,15 +84,21 @@ async function fetchNews(query, page = 1) {
     try {
         toggleLoader(true);
         searchQueryDisplay.textContent = query;
-        
-        const url = `${BASE_URL}?q=${encodeURIComponent(query)}&apiKey=${API_KEY}&pageSize=${ITEMS_PER_PAGE}&page=${page}&sortBy=${currentSort}`;
-        const response = await fetch(url);
-        const data = await response.json();
 
-        if (data.status === 'ok') {
+        // Construct the URL for our Vercel Serverless Function
+        // Pass necessary parameters as query string values
+        const apiUrl = `/api/news?q=${encodeURIComponent(query)}&page=${page}&sortBy=${currentSort}&pageSize=${ITEMS_PER_PAGE}`;
+
+        // Fetch from our own API endpoint
+        const response = await fetch(apiUrl);
+        const data = await response.json(); // Assuming our function always returns JSON
+
+        // Check if the response from our API endpoint is ok AND if the 'status' inside the data is 'ok'
+        // (Our serverless function might return an error structure like { error: 'message' })
+        if (response.ok && data.status === 'ok') {
             totalResults = data.totalResults;
             resultsCount.textContent = totalResults;
-            
+
             newsGrid.innerHTML = '';
 
             if (data.articles.length === 0) {
@@ -106,11 +112,17 @@ async function fetchNews(query, page = 1) {
 
             updatePagination();
         } else {
-            throw new Error(data.message || 'Failed to fetch news');
+            // Throw an error based on the message from our serverless function or a default one
+            throw new Error(data.error || data.message || 'Failed to fetch news');
         }
     } catch (error) {
         console.error('Error fetching news:', error);
+        // Display the error message received from the serverless function or the fetch operation
         newsGrid.innerHTML = `<div class="error-message">${error.message}. Please try again later.</div>`;
+        // Reset results info on error
+        totalResults = 0;
+        resultsCount.textContent = 0;
+        updatePagination(); // Update pagination to reflect zero results/error state
     } finally {
         toggleLoader(false);
     }
