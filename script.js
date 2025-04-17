@@ -1,4 +1,4 @@
-const API_KEY = 'f1c53b56eda04f31b1e073a400e95948';
+const API_KEY = 'YOUR_NEWS_API_KEY'; // Replace with your actual API key 
 const BASE_URL = 'https://newsapi.org/v2/everything';
 
 const newsGrid = document.querySelector('.news-grid');
