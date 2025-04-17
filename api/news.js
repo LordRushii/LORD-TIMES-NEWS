@@ -1,7 +1,3 @@
-// api/news.js
-
-// Use the built-in fetch for Node.js 18+ (standard on Vercel)
-// No need for external 'node-fetch' package usually
 
 export default async function handler(request, response) {
   const { searchParams } = new URL(request.url, `http://${request.headers.host}`);
