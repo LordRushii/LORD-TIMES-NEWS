@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="Logo.png" alt="News Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#ipl">IPL</a></li>
+                <li><a href="#finance">Finance</a></li>
+                <li><a href="#politics">Politics</a></li>
+            </ul>
+            <div class="search-container">
+                <input type="text" placeholder="e.g. Science" class="search-input">
+                <button class="search-button">Search</button>
+            </div>
+            <div class="theme-toggle-container">
+                <button id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                </button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="news-container">
+        <div class="controls-container">
+            <div class="results-info">
+                Showing <span id="results-count">0</span> results for "<span id="search-query">india</span>"
+            </div>
+            <div class="sort-controls">
+                <label for="sort-by">Sort by:</label>
+                <select id="sort-by">
+                    <option value="publishedAt">Date</option>
+                    <option value="relevancy">Relevance</option>
+                    <option value="popularity">Popularity</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="loader-container">
+            <div class="loader"></div>
+        </div>
+
+        <div class="news-grid">
+            <!-- News cards will be dynamically inserted here -->
+        </div>
+
+        <div class="pagination">
+            <button id="prev-page" disabled>Previous</button>
+            <button id="current-page" disabled>1</button>
+            <button id="next-page">Next</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="scrolling-text-container">
+            <span class="scrolling-text">Stay updated with the latest news!</span>
+        </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://github.com/LordRushii" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/rushikesh-jadhav-0b2045331" target="_blank"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Your trusted source for news</p>
+            <p>&copy; 2025 News App. All rights reserved. | Developed by Rushikesh Jadhav</p>
+           
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
